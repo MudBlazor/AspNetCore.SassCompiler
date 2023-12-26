@@ -10,7 +10,7 @@
     <PackageTags>sass;scss;aspnetcore;dart-sass;compiler;watch;blazor;</PackageTags>
     <RepositoryUrl>https://github.com/MudBlazor/AspNetCore.SassCompiler</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Title>AspNetCore.SassCompiler</Title>
+    <Title>MudBlazor.SassCompiler</Title>
     <LangVersion>8.0</LangVersion>
     <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
