@@ -1,5 +1,10 @@
+# Note
+This is a MudBlazor fork of the excellent [AspNetCore.SassCompiler](https://github.com/koenvzeijl/AspNetCore.SassCompiler) package.  
+Please contribute any PRs and Issues to the original package.  
+
 # AspNetCore.SassCompiler
 [![NuGet Version](https://img.shields.io/nuget/v/AspNetCore.SassCompiler.svg?style=flat)](https://www.nuget.org/packages/AspNetCore.SassCompiler/)
+
 
 Sass Compiler Library for .NET Core 3.1/5.x./6.x without node.
 
