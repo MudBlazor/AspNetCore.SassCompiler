@@ -22,6 +22,3 @@ jobs:
     - name: Publish nuget package
       run: dotnet nuget push nupkgs/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
       working-directory: ./AspNetCore.SassCompiler
-    - name: Push nuget generated package symbols
-      run: dotnet nuget push nupkgs/*.snupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
-      working-directory: ./AspNetCore.SassCompiler
