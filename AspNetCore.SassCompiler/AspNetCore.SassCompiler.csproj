@@ -41,4 +41,10 @@
     <None Include="..\AspNetCore.SassCompiler.Tasks\bin\Release\netstandard2.0\AspNetCore.SassCompiler.Tasks.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="false" />
   </ItemGroup>
 
+  <!--Dont Include in build output-->
+  <ItemGroup>
+    <!--macOS hidden file (causes problems with dotnet pack)-->
+    <Content Remove="**/*/.DS_Store" />
+  </ItemGroup>
+
 </Project>
