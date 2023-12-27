@@ -181,7 +181,7 @@ namespace AspNetCore.SassCompiler
 
         private IEnumerable<ITaskItem> GenerateSourceTarget(SassCompilerOptions options)
         {
-            if (Directory.Exists(options.SourceFolder))
+            if (Directory.Exists(options.SourceFolder) || File.Exists(options.SourceFolder))
             {
                 var arguments =
                     $"{Snapshot} {options.Arguments} {options.GetLoadPathArguments()} {options.SourceFolder}:{options.TargetFolder} --update";
