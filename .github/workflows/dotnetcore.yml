@@ -25,6 +25,9 @@ jobs:
         dotnet-version: 6.0.x
     - name: Install dependencies
       run: dotnet restore
+    - name: Build Library
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ./AspNetCore.SassCompiler
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Validate generated css files
