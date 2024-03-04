@@ -1,4 +1,6 @@
 # Note
+
+This is no repo in no longer use and will be deleted.
 This is a MudBlazor fork of the excellent [AspNetCore.SassCompiler](https://github.com/koenvzeijl/AspNetCore.SassCompiler) package.  
 Please contribute any PRs and Issues to the original package.  
 
