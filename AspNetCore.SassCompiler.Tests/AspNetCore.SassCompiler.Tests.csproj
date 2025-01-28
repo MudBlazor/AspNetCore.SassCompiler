@@ -5,7 +5,7 @@
   </PropertyGroup>
   
   <!-- Only needed because we're using a ProjectReference, this is done implicitly for PackageReference's -->
-  <Import Project="..\AspNetCore.SassCompiler\build\AspNetCore.SassCompiler.props" />
+  <Import Project="..\AspNetCore.SassCompiler\build\MudBlazor.SassCompiler.props" />
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -38,6 +38,6 @@
   </ItemGroup>
 
   <!-- Only needed because we're using a ProjectReference, this is done implicitly for PackageReference's -->
-  <Import Project="..\AspNetCore.SassCompiler\build\AspNetCore.SassCompiler.targets" />
+  <Import Project="..\AspNetCore.SassCompiler\build\MudBlazor.SassCompiler.targets" />
 
 </Project>

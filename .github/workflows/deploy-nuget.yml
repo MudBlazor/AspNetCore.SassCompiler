@@ -1,0 +1,22 @@
+name: deploy-nuget
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-nuget:
+    name: Deploy mudblazor sasscompiler nuget to nuget.org
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Setup dotnet version
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Pack nuget package
+      run: dotnet pack -c Release --output nupkgs
+      working-directory: ./AspNetCore.SassCompiler
+    - name: Publish nuget package
+      run: dotnet nuget push nupkgs/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+      working-directory: ./AspNetCore.SassCompiler

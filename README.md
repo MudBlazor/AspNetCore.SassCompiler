@@ -1,3 +1,9 @@
+# Note
+This is a MudBlazor fork of the excellent [AspNetCore.SassCompiler](https://github.com/koenvzeijl/AspNetCore.SassCompiler) package.  
+It specifically addresses our need for multi-target support.
+Our thanks to the original authors for all their hard work.  
+Please contribute any PRs and Issues to the original package.  
+
 # AspNetCore.SassCompiler
 [![NuGet Version](https://img.shields.io/nuget/v/AspNetCore.SassCompiler.svg?style=flat)](https://www.nuget.org/packages/AspNetCore.SassCompiler/)
 

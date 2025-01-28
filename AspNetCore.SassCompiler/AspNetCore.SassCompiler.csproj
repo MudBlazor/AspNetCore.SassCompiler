@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <PackageId>AspNetCore.SassCompiler</PackageId>
-    <Version>1.83.4</Version>
+    <PackageId>MudBlazor.SassCompiler</PackageId>
+    <Version>2.0.5</Version>
     <Authors>koenvzeijl,sleeuwen,Michaelvs97</Authors>
     <Description>Sass Compiler Library for .NET 6 and above. without node</Description>
     <PackageDescription>Sass Compiler Library for .NET 6 and above. without node, using dart-sass as a compiler</PackageDescription>
     <PackageTags>sass;scss;aspnetcore;dart-sass;compiler;watch;blazor;</PackageTags>
-    <RepositoryUrl>https://github.com/koenvzeijl/AspNetCore.SassCompiler</RepositoryUrl>
+    <RepositoryUrl>https://github.com/MudBlazor/AspNetCore.SassCompiler</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>AspNetCore.SassCompiler</Title>
     <PackageIcon>logo.png</PackageIcon>
@@ -42,6 +42,12 @@
     <None Include="..\logo.png" Pack="true" PackagePath="\" />
     <None Include="..\README.md" Pack="true" PackagePath="\" />
     <None Include="..\AspNetCore.SassCompiler.Tasks\bin\Release\netstandard2.0\AspNetCore.SassCompiler.Tasks.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="false" />
+  </ItemGroup>
+
+  <!--Dont Include in build output-->
+  <ItemGroup>
+    <!--macOS hidden file (causes problems with dotnet pack)-->
+    <Content Remove="**/*/.DS_Store" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <!-- Only needed because we're using a ProjectReference, this is done implicitly for PackageReference's -->
-  <Import Project="..\..\AspNetCore.SassCompiler\build\AspNetCore.SassCompiler.props" />
+  <Import Project="..\..\AspNetCore.SassCompiler\build\MudBlazor.SassCompiler.props" />
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -23,6 +23,6 @@
   </ItemGroup>
 
   <!-- Only needed because we're using a ProjectReference, this is done implicitly for PackageReference's -->
-  <Import Project="..\..\AspNetCore.SassCompiler\build\AspNetCore.SassCompiler.targets" />
+  <Import Project="..\..\AspNetCore.SassCompiler\build\MudBlazor.SassCompiler.targets" />
 
 </Project>
