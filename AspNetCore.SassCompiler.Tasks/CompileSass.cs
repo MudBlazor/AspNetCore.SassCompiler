@@ -213,7 +213,7 @@ namespace AspNetCore.SassCompiler
 
         private IEnumerable<ITaskItem> GenerateCss(SassCompilerOptions options)
         {
-            var rootFolder = Directory.GetCurrentDirectory();
+            var nominalisedRootFolder = Directory.GetCurrentDirectory().Replace('\\', '/');
 
             var processArguments = new StringBuilder();
             processArguments.Append(Snapshot);
@@ -228,10 +228,11 @@ namespace AspNetCore.SassCompiler
             }
 
             var hasSources = false;
+            var compilationsWithSources = new List<SassCompilerCompilationOptions>();
             foreach (var compilation in options.GetAllCompilations())
             {
-                var fullSource = Path.GetFullPath(Path.Combine(rootFolder, compilation.Source));
-                var fullTarget = Path.GetFullPath(Path.Combine(rootFolder, compilation.Target));
+                var fullSource = Path.GetFullPath(Path.Combine(nominalisedRootFolder, compilation.Source));
+                var fullTarget = Path.GetFullPath(Path.Combine(nominalisedRootFolder, compilation.Target));
 
                 if (!Directory.Exists(fullSource) && !File.Exists(fullSource))
                 {
@@ -242,6 +243,9 @@ namespace AspNetCore.SassCompiler
                 }
 
                 hasSources = true;
+
+                // Note SassCompilerCompilationOptions nominalises DirectorySeperator to "/"
+                compilationsWithSources.Add(new SassCompilerCompilationOptions{Source = fullSource, Target = fullTarget});
                 processArguments.AppendFormat(" \"{0}\":\"{1}\"", fullSource, fullTarget);
             }
 
@@ -265,24 +269,34 @@ namespace AspNetCore.SassCompiler
                 Log.LogWarning(error);
             }
 
-            var matches = _compiledFilesRe.Matches(output);
-
-            foreach (Match match in matches)
+            // For successful dart-sass compilation we can assume the target files are in place
+            // Always output the Content Items
+            foreach( var compilationWithSource in compilationsWithSources)
             {
-                var cssFile = match.Groups[2].Value;
-
-                var generatedFile = new TaskItem(cssFile);
-                yield return generatedFile;
+                // one to one
+                if (File.Exists(compilationWithSource.Source))
+                {
+                    var targetFile = compilationWithSource.Target.Replace(nominalisedRootFolder + '/', string.Empty);
+                    yield return new TaskItem(targetFile.Replace('/', '\\'));
+                }
+                // many to many
+                else
+                {
+                    foreach(var sourceFile in Directory.GetFiles(compilationWithSource.Source, "*.scss", SearchOption.AllDirectories))
+                    {
+                        var nominalisedSourceFile = sourceFile.Replace('\\', '/');
+                        if (!Path.GetFileName(sourceFile).StartsWith("_"))
+                        {
+                            var targetFile = nominalisedSourceFile.Replace(compilationWithSource.Source, compilationWithSource.Target).Replace("scss", "css").Replace(nominalisedRootFolder + '/', string.Empty);
+                            yield return new TaskItem(targetFile.Replace('/', '\\'));
+                        }
+                    }
+                }
             }
         }
 
         private (bool Success, string Output, string Error) GenerateCss(string arguments)
         {
-            if (string.IsNullOrWhiteSpace(TargetFrameworks))
-            {
-                return CompileCss(arguments);
-            }
-
             var mutexName = GetMutexName();
 
             Log.LogMessage(MessageImportance.Normal,

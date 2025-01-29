@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <PackageId>MudBlazor.SassCompiler</PackageId>
-    <Version>2.0.5</Version>
+    <Version>2.0.7</Version>
     <Authors>koenvzeijl,sleeuwen,Michaelvs97</Authors>
     <Description>Sass Compiler Library for .NET 6 and above. without node</Description>
     <PackageDescription>Sass Compiler Library for .NET 6 and above. without node, using dart-sass as a compiler</PackageDescription>
